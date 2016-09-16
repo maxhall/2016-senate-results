@@ -10,66 +10,77 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="dist/main.css">
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="dist/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-      <h3>Follow live</h3>
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">President</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Honi Soit</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Councillors</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">NUS</a></li>
-      </ul>
+      <!--[if lt IE 8]>
+          <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+      <header class="header">
+        <h1 class="header__title">Title</h1>
+        <p class="header__standfirst">standfirst</p>
+      </header>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
+      <div class="content">
+        <div class="results">
+            <nav class="results__selector selector">
+              <ul class="selector__list" role="tablist">
+                <li role="presentation" class="selector__list-item"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="selector__link">President</a></li>
+                <li role="presentation" class="selector__list-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="selector__link">Honi Soit</a></li>
+                <li role="presentation" class="selector__list-item"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" class="selector__link">Councillors</a></li>
+                <li role="presentation" class="selector__list-item"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" class="selector__link">NUS</a></li>
+              </ul>
+            </nav>
+            <div role="tabpanel" class="results__election results__president" id="home">
               <h1>Pres results</h1>
+              <ul>
+                <li>Bar chart</li>
+                <li>Booth by booth count</li>
+              </ul>
+              <div class="chart"></div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <h1>Honi Soit results</h1>
               <p>Here will lie the interactive stuff</p>
-              <img src="http://i2.mirror.co.uk/incoming/article8075004.ece/ALTERNATES/s615b/Harambe.jpg" style="width:100%;margin:auto"></src>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
-          <h1>Pres results</h1>
-          <p>Here will lie the interactive stuff</p>
-          <img src="https://i.ytimg.com/vi/opKg3fyqWt4/hqdefault.jpg" style="width:100%;margin:auto"></src>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="messages">
-          <h1>Pres results</h1>
-          <p>Here will lie the interactive stuff</p>
-          <img src="http://i2.mirror.co.uk/incoming/article8075004.ece/ALTERNATES/s615b/Harambe.jpg" style="width:100%;margin:auto"></src>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="settings">
-          <h1>Pres results</h1>
-          <p>Here will lie the interactive stuff</p>
-          <img src="http://i2.mirror.co.uk/incoming/article8075004.ece/ALTERNATES/s615b/Harambe.jpg" style="width:100%;margin:auto"></src>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+              <h1>Council results</h1>
+              <p>Here will lie the interactive stuff</p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">
+              <h1>NUS results</h1>
+              <p>Here will lie the interactive stuff</p>
+            </div>
+          </div>
+        <div class="updates">
+          <h1 class="updates__title">The latest</h1>
+          <div class="updates__entries">
+            <article class="updates__entry">
+              <h5 class="updates__heading">Update Heading</h5>
+              <span class="updates__time">20:12 • </span>
+              <span class="updates__author">Max Hall</span>
+              <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+            </article>
+            <article class="updates__entry">
+              <h5 class="updates__heading">Update Heading</h5>
+              <span class="updates__time">20:12 • </span>
+              <span class="updates__author">Max Hall</span>
+              <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+            </article>
+          </div>
         </div>
       </div>
 
-    </div>
-
-      <footer>
-        <hr>
+      <footer class="footer">
         <p><em>Honi</em> is totally responsible for this content but doesn't care to hear your whinging.</p>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
-        <script src="js/main.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+      <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+      <script src="dist/main.js"></script>
     </body>
 </html>

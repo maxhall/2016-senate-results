@@ -1,0 +1,22 @@
+{
+  "name": "2016-src-results",
+  "version": "1.0.0",
+  "description": "Live embedded graphics and analysis of the Sydney University Students' Representative Council 2016 elections.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honisoit/2016-src-results.git"
+  },
+  "author": "Max Hall",
+  "bugs": {
+    "url": "https://github.com/honisoit/2016-src-results/issues"
+  },
+  "homepage": "https://github.com/honisoit/2016-src-results#readme",
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}

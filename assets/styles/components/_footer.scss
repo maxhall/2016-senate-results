@@ -1,0 +1,6 @@
+.footer {
+  border-top: 1px solid $brand-grey;
+  margin-top: 1rem;
+  @include outer-container();
+  @include small-text;
+}

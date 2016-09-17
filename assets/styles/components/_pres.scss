@@ -1,0 +1,83 @@
+.pres {
+}
+
+.pres__candidates {
+  @include outer-container()
+  display: block;
+}
+
+.pres__candidate {
+  @include sm-columns(6);
+}
+
+.pres__candidate-copy {
+  @include sm-columns(6);
+}
+
+.pres__candidate-copy--right {
+  text-align: right;
+}
+
+.pres__candidate-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 5rem 0 0 0;
+  padding: 0;
+}
+
+.pres__candidate-faction {
+  @include small-text;
+}
+.pres__candidate-brand {
+  @include small-text;
+
+  &:before {
+    content: " // ";
+  }
+}
+
+.pres__photo-wrapper {
+  height: auto;
+  @include sm-columns(6);
+}
+
+.pres__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.pres__summary {
+  display: block;
+  box-sizing: border-box;
+}
+
+.pres__summary-segment-label {
+  font-family: "Gotham";
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.pres__analysis {
+  margin-top: $baseline;
+  @include outer-container();
+}
+.pres__meta {
+  @include md-columns(6);
+  @include lg-columns(3);
+}
+
+.pres__standfirst {
+  @include md-columns(6);
+  @include lg-columns(9);
+
+  p {
+    margin: 0;
+  }
+}
+
+.pres__footnotes {
+  @include small-text;
+}

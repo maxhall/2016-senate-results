@@ -19,65 +19,140 @@
           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
       <header class="header">
-        <h1 class="header__title">Title</h1>
-        <p class="header__standfirst">standfirst</p>
+        <span class="header__siren js-header-siren">🚨</span>
+        <h1 class="header__title">Elections 2016</h1>
+        <span class="header__siren js-header-siren">🚨</span>
+        <p class="header__standfirst">Results from the SRC and Honi Soit elections, live from a nuclear bunker</p>
       </header>
 
       <div class="content">
-        <div class="results">
-            <nav class="results__selector selector">
-              <ul class="selector__list" role="tablist">
-                <li role="presentation" class="selector__list-item"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="selector__link">President</a></li>
-                <li role="presentation" class="selector__list-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="selector__link">Honi Soit</a></li>
-                <li role="presentation" class="selector__list-item"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" class="selector__link">Councillors</a></li>
-                <li role="presentation" class="selector__list-item"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" class="selector__link">NUS</a></li>
-              </ul>
-            </nav>
-            <div role="tabpanel" class="results__election results__president" id="home">
-              <h1>Pres results</h1>
-              <ul>
-                <li>Bar chart</li>
-                <li>Booth by booth count</li>
-              </ul>
-              <div class="chart"></div>
+        <div class="content__results">
+
+          <ul class="tabs" role="tablist">
+            <li role="presentation" class="tabs__tab tabs__tab--current" data-tab="js-tab-pres">President</li>
+            <li role="presentation" class="tabs__tab" data-tab="js-tab-honi">Honi Soit</li>
+          </ul>
+
+          <div role="tabpanel" id="js-tab-pres" class="tabs__content tabs__content--current pres" id="home">
+            <div class="pres__candidates">
+              <div class="pres__candidate">
+                  <div class="pres__photo-wrapper">
+                    <img class="pres__photo" src="https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg"></img>
+                  </div>
+                  <div class="pres__candidate-copy">
+                    <p class="pres__candidate-name">Georgia Mantle</p>
+                    <span class="pres__candidate-faction">Grassroots</span>
+                    <span class="pres__candidate-brand">Power</span>
+                  </div>
+              </div>
+              <div class="pres__candidate">
+                  <div class="pres__candidate-copy pres__candidate-copy--right">
+                    <p class="pres__candidate-name">Isabella Brook</p>
+                    <span class="pres__candidate-faction">NLS</span>
+                    <span class="pres__candidate-brand">Stand Up</span>
+                  </div>
+                  <div class="pres__photo-wrapper">
+                    <img class="pres__photo" src="https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg"></img>
+                  </div>
+              </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="profile">
-              <h1>Honi Soit results</h1>
-              <p>Here will lie the interactive stuff</p>
+
+            <div class="pres__summary js-pres-summary"></div>
+
+            <div class="pres__analysis">
+              <div class="pres__meta meta">
+                <span class="meta__booths">3/6</span>
+                <span class="meta__smalltext">booths counted</span>
+                <span class="meta__turnout">32%</span>
+                <span class="meta__smalltext">turnout</span>
+              </div>
+              <div class="pres__standfirst">
+                <p>
+                  Standfirst. One paragraph summary/explainer of the results above, updated to reference the results as they're finalised.
+                </p>
+              </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="messages">
-              <h1>Council results</h1>
-              <p>Here will lie the interactive stuff</p>
+            <div class="pres__breakdown-container">
+              <h1 class="pres__breakdown-title">Booth by booth</h1>
+              <div class="js-pres-breakdown"></div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="settings">
-              <h1>NUS results</h1>
-              <p>Here will lie the interactive stuff</p>
+            <div class="pres__footnotes">
+              <p>(FOOTNOTES) The president count will take place over the next 24 hours. Bear with us.</p>
             </div>
           </div>
-        <div class="updates">
+          <div role="tabpanel" id="js-tab-honi" class="tabs__content honi" id="profile">
+            <div class="honi__summary js-honi-summary"></div>
+            <div class="honi__analysis">
+              <div class="honi__meta meta">
+                <span class="meta__booths">3/6</span>
+                <span class="meta__smalltext">booths counted</span>
+                <span class="meta__turnout">32%</span>
+                <span class="meta__smalltext">turnout</span>
+              </div>
+              <div class="honi__standfirst">
+                <p>Standfirst. One paragraph summary/explainer of the results above, updated to reference the results as they're finalised.</p>
+              </div>
+            </div>
+            <div class="honi__breakdown-container">
+              <h1 class="honi__breakdown-title">Booth by booth</h1>
+              <div class="js-honi-breakdown"></div>
+            </div>
+            <div class="honi__footnotes">
+              <p>(FOOTNOTES) The president count will take place over the next 24 hours. Bear with us.</p>
+            </div>
+            <p>Here will lie the interactive stuff</p>
+          </div>
+        </div>
+        <div class="content__updates updates">
           <h1 class="updates__title">The latest</h1>
-          <div class="updates__entries">
-            <article class="updates__entry">
-              <h5 class="updates__heading">Update Heading</h5>
-              <span class="updates__time">20:12 • </span>
-              <span class="updates__author">Max Hall</span>
-              <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
-            </article>
-            <article class="updates__entry">
-              <h5 class="updates__heading">Update Heading</h5>
-              <span class="updates__time">20:12 • </span>
-              <span class="updates__author">Max Hall</span>
-              <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
-            </article>
+          <div class="updates__entries-container">
+            <div class="updates__entries">
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+              <article class="updates__entry">
+                <h5 class="updates__heading">Update Heading</h5>
+                <span class="updates__time">20:12 • </span>
+                <span class="updates__author">Max Hall</span>
+                <p class="updates__body">Results for President should be about 20 minutes away. We're just waiting on the final ballot boxes to reach the count room.</p>
+              </article>
+            </div>
           </div>
         </div>
       </div>
 
       <footer class="footer">
-        <p><em>Honi</em> is totally responsible for this content but doesn't care to hear your whinging.</p>
+        <p>(FOOTNOTES) <em>Honi</em> is totally responsible for this content but doesn't care to hear your whinging. You can credit Alexandros Tsathas, Mary Ward, Sam Langford, Subeta Vimalarajah, Naaman Zhou and Max Hall</p>
       </footer>
 
-      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+      <script>window.jQuery || document.write('<script src="dist/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
       <script src="https://d3js.org/d3.v4.min.js"></script>
       <script src="https://pym.nprapps.org/pym.v1.min.js"></script>

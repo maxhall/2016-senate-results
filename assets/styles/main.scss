@@ -1,83 +1,22 @@
-.header {
-  text-align: center;
-}
+// Import variables
+@import "variables";
 
-.content {
-  width: 100%;
-  float: left;
-}
+// Import neat for all the grid goodness
+@import "neat/neat";
 
-footer {
-}
+// Import mixins
+@import "mixins/grid-helper";
+@import "mixins/good-underlines";
 
-.results {
-  width: 50%;
-  float: left;
-  padding-top: 0.5rem;
-  border-top: 4px solid black;
-}
+// Import global styles
+@import "global";
 
-.results__selector {
-  padding: 0;
-  margin: 0;
-}
+// Import our components
+@import "components/header";
+@import "components/footer";
+@import "components/tabs";
+@import "components/meta";
 
-.selector {
-  background-color: #888;
-  padding: 0;
-  margin: 0;
-}
-
-.selector__list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.selector__list-item {
-  display: inline;
-  border-style: solid;
-  border-color: black;
-  border-width: 0 5px;
-  padding: 5px;
-  margin: 0;
-}
-
-.selector__link {
-  padding: 0;
-  margin: 0;
-}
-
-.updates {
-  width: 50%;
-  float: right;
-  padding-top: 0.5rem;
-  border-top: 4px solid black;
-}
-
-.updates__entries {
-  height: 200px;
-  overflow-x: scroll;
-}
-
-.updates__entry {
-  background-color: #afafaf;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-}
-
-.updates__heading {
-  font-size: 3rem;
-  font-family: "GT Sectra";
-  font-weight: 600;
-  font-style: italic;
-  margin: 0;
-  padding: 0;
-}
-
-.updates__time,
-.updates__author {
-  text-transform: uppercase;
-  font-family: sans-serif;
-  color: #444;
-}
+@import "components/pres";
+@import "components/honi";
+@import "components/updates";

@@ -5,8 +5,8 @@ var cssnano = require('gulp-cssnano');
 var uglify = require('gulp-uglify');
 var autoprefixer = require('gulp-autoprefixer');
 
-gulp.task('default', function() {
-
+gulp.task('default', ['styles', 'scripts'], function() {
+  console.log('Thus Spake Zara – Love Island, 2016')
 });
 
 gulp.task('styles', function() {
@@ -40,5 +40,5 @@ gulp.task('browserSync', function() {
 gulp.task('watch', ['browserSync', 'styles', 'scripts'], function() {
   gulp.watch('assets/styles/**/*.scss', ['styles']);
   gulp.watch('assets/javascripts/**/*.js', ['scripts']);
-  gulp.watch('*.html', browserSync.reload());
+  gulp.watch('/*.html', browserSync.reload());
 });

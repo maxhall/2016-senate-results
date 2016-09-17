@@ -1,0 +1,26 @@
+@mixin sm-columns($columns, $push:0) {
+  // no media query in sm-columns (unlike md- and lg-columns) because sm is default
+  @include span-columns($columns);
+  @include shift($push);
+}
+
+@mixin md-columns($columns, $push:0) {
+  @include media($medium) {
+    @include span-columns($columns);
+    @include shift($push);
+  }
+}
+
+@mixin lg-columns($columns, $push:0) {
+  @include media($large) {
+    @include span-columns($columns);
+    @include shift($push);
+  }
+}
+
+@mixin xl-columns($columns, $push:0) {
+  @include media($xlarge) {
+    @include span-columns($columns);
+    @include shift($push);
+  }
+}

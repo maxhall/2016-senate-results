@@ -1,0 +1,32 @@
+.updates {
+  background-color: #eeffee;
+}
+
+.updates__title {
+  margin: 0;
+}
+
+.updates__entries-container {
+  border-top: 4px solid $brand-grey;
+}
+
+.updates__entries {
+  height: 400px;
+  overflow-x: scroll;
+}
+
+.updates__entry {
+  background-color: #ccddcc;
+  padding: 5px 10px;
+  margin: 10px 0;
+}
+
+.updates__heading {
+  margin: 0;
+  padding: 0;
+}
+
+.updates__time,
+.updates__author {
+
+}

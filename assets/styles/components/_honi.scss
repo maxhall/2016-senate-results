@@ -1,3 +1,21 @@
 .honi {
   background-color: #eeeeff;
 }
+
+.honi__analysis {
+  margin-top: $baseline;
+  @include outer-container();
+}
+.honi__meta {
+  @include md-columns(6);
+  @include lg-columns(3);
+}
+
+.honi__standfirst {
+  @include md-columns(6);
+  @include lg-columns(9);
+
+  p {
+    margin: 0;
+  }
+}

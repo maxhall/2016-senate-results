@@ -1,6 +1,8 @@
 .updates {
-  border: 1px solid $brand-grey;
-  padding: $baseline;
+  @media (min-width: $medium) {
+    border: 1px solid $brand-grey;
+    padding: $baseline;
+  }
 }
 
 .updates__title {
@@ -13,26 +15,33 @@
 
 .updates__entries {
   height: 400px;
-  overflow-x: scroll;
 }
 
 .updates__entry {
   background-color: $brand-grey-light;
-  padding: 5px 10px;
-  margin: 10px 0;
+  padding: $baseline/2 $baseline;
+  margin: $baseline 0;
 }
 
 .updates__heading {
   margin: 0;
   padding: 0;
-  font-family: $font-family-serif;
+  font-family: $font-family-sans-serif;
   font-size: $fontsize2;
 }
 
 .updates__meta {
   @include apparatus-sans;
+  color: $brand-grey-dark;
 }
 
 .updates__time,
 .updates__author {
+}
+
+.updates__body {
+  margin-top: $baseline;
+  p {
+    margin-top: $baseline;
+  }
 }

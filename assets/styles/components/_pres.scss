@@ -2,16 +2,20 @@
 }
 
 .pres__candidates {
-  @include outer-container()
-  display: block;
+  //@include outer-container()
+  display: flex;
+  flex-direction: row;
 }
 
 .pres__candidate {
-  @include sm-columns(6);
+  //@include sm-columns(6);
+  flex: 0 0 50%;
 }
 
 .pres__candidate-copy {
-  @include sm-columns(6);
+  //@include sm-columns(6);
+  width: 50%;
+  float: left;
 }
 
 .pres__candidate-copy--right {
@@ -40,7 +44,9 @@
 
 .pres__photo-wrapper {
   height: auto;
-  @include sm-columns(6);
+  width: 50%;
+  float: left;
+  //@include sm-columns(6);
 }
 
 .pres__photo {

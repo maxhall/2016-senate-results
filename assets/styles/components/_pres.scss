@@ -72,10 +72,6 @@
 .pres__standfirst {
   @include md-columns(6);
   @include lg-columns(9);
-
-  p {
-    margin: 0;
-  }
 }
 
 .pres__footnotes {

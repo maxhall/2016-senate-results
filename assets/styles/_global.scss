@@ -22,8 +22,8 @@ a {
 @mixin small-text {
   font-size: $fontsize0;
   line-height: $baseline;
-  color: $brand-grey;
-  font-family: $font-family-serif;
+  color: $brand-grey-dark;
+  font-family: $font-family-sans-serif;
 }
 
 @mixin section-title {
@@ -38,8 +38,9 @@ a {
 @mixin apparatus-sans {
   font-size: $fontsize0;
   font-family: $font-family-sans-serif;
-  font-weight: bold;
+  //font-weight: bold;
   text-transform: uppercase;
+  letter-spacing: 150%;
 }
 
 /*
@@ -53,11 +54,11 @@ a {
 .content__results {
   //@include md-columns(6);
   flex: 0 1 50%;
-  margin-right: $baseline;;
+  margin-right: $baseline/2;
 }
 
 .content__updates {
   //@include md-columns(6);
   flex: 0 1 50%;
-  margin-left: $baseline;
+  margin-left: $baseline/2;
 }

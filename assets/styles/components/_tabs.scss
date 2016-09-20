@@ -1,12 +1,15 @@
 .tabs {
   text-align: center;
-  border-style: solid;
-  border-width: 1px 0;
-  border-color: $brand-grey;
+  //border-style: solid;
+  //border-width: 1px 0;
+  //border-color: $brand-grey;
   margin: 0;
   padding: 0;
   display:flex;
   flex-direction: horizontal;
+  & :first-child {
+    border-right: 0;
+  }
 }
 
 .tabs__tab {
@@ -15,6 +18,8 @@
   height: 100%;
   @include apparatus-sans;
   list-style: none;
+  border: 1px solid $brand-grey;
+  padding: $baseline/2;
 }
 
 .tabs__tab--current {

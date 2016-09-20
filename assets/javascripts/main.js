@@ -26,7 +26,29 @@ var logTabletopData = function logTabletopData(data, tabletop) {
   updatesData = data.updates.elements;
   presData = data.pres.elements;
   honiData = data.honi.elements;
-  d3.select('.header__standfirst').html(constants.standfirst);
+
+  updateCopy();
+};
+
+/**
+ * Copy
+ */
+var updateCopy = function updateCopy() {
+  // General
+  d3.select('.js-header-title').text(constants.title);
+  d3.select('.js-header-standfirst').html(constants.headerStandfirst);
+  d3.select('.js-footer-footnotes').html(constants.footnotes);
+
+  // Pres
+  d3.select('.js-pres-turnout').text(constants.presTurnout);
+  d3.select('.js-pres-booths').text(constants.presBoothsCounted + '/' + constants.numberOfBooths);
+  d3.select('.js-pres-standfirst').html(constants.presStandfirst);
+  d3.select('.js-pres-footnotes').html(constants.presFootnotes);
+
+  // Honi
+  d3.select('.js-honi-turnout').text(constants.honiTurnout);
+  d3.select('.js-honi-standfirst').html(constants.honiStandfirst);
+  d3.select('.js-honi-footnotes').html(constants.honiFootnotes);
 };
 
 /**
@@ -36,6 +58,8 @@ var logTabletopData = function logTabletopData(data, tabletop) {
 var presWinningPercentage = 48;
 var presSummaryHeight = 40;
 var presSummaryWidth = $('.js-content-results').width();
+// How far from the edge of the graphic should the bar label appear
+var presSummaryLabelPadding = 20;
 
 // Elements of the summary graphic
 var presSummary = d3.select('.js-pres-summary').append('svg');
@@ -45,13 +69,10 @@ var presSummaryMidline = presSummary.append('line');
 var presSummaryLabelOne = presSummary.append('text');
 var presSummaryLabelTwo = presSummary.append('text');
 
-var presCopyUpdate = function presCopyUpdate() {
-  var presTurnout = String(parseInt(constants.presVotesCast) / parseInt(constants.eligibleVoters) * 100) + '%';
-  $('.js-pres-turnout').text(presTurnout);
-};
 
 // Initiate the pres summary
 var presSummaryInit = function presSummaryInit() {
+
   presSummary
     .attr('height', presSummaryHeight)
     .attr('width', presSummaryWidth);
@@ -59,14 +80,14 @@ var presSummaryInit = function presSummaryInit() {
   presSummarySegmentOne
     .attr('x', 0)
     .attr('y', 0)
-    .attr('width', presSummaryWidth * presWinningPercentage / 100)
+    .attr('width', presSummaryWidth * 10)
     .attr('height', presSummaryHeight)
     .style('fill', '#008938');
 
   presSummarySegmentTwo
-    .attr('x', presSummaryWidth * (presWinningPercentage / 100))
+    .attr('x', presSummaryWidth * 0.3)
     .attr('y', 0)
-    .attr('width', presSummaryWidth * (100 - presWinningPercentage) / 100)
+    .attr('width', presSummaryWidth * 0.5)
     .attr('height', presSummaryHeight)
     .style('fill', '#753da6');
 
@@ -79,50 +100,49 @@ var presSummaryInit = function presSummaryInit() {
     .attr('stroke', 'black');
 
   presSummaryLabelOne
-    .attr('x', presSummaryHeight/4)
+    .attr('x', presSummaryLabelPadding)
     .attr('y', presSummaryHeight/4)
     .attr('dy', presSummaryHeight/2)
     .classed('pres__summary-segment-label', true)
-    .text(presWinningPercentage + '%');
+    .text(constants.presMantlePercentage);
 
   presSummaryLabelTwo
-    .attr('x', presSummaryWidth - 70)
+    .attr('x', presSummaryWidth - presSummaryLabelPadding)
     .attr('y', presSummaryHeight/4)
     .attr('dy', presSummaryHeight/2)
+    .attr('text-anchor', 'end')
     .classed('pres__summary-segment-label', true)
-    .text(100 - presWinningPercentage + '%');
+    .text(constants.presBrookPercentage);
 };
 
 // Update the pres summary after resize or new data
 var presSummaryUpdate = function presSummaryUpdate() {
-  console.log('Updating pres summary');
-
   var presSummaryWidth = $('.js-content-results').width();
+  var computedMantleMultiplier = parseInt(constants.presMantlePercentage)/100;
+  var computedBrookMultiplier = 100 - computedMantleMultiplier;
+
   presSummary
     .attr('width', presSummaryWidth);
 
-  presWinningPercentage = Math.random() * 100 | 0;
-  var presSummaryWidth = $('.js-pres-summary').width();
-
   presSummarySegmentOne
     .transition()
-    .attr('width', presSummaryWidth * presWinningPercentage / 100);
+    .attr('width', presSummaryWidth * computedMantleMultiplier);
 
   presSummarySegmentTwo
     .transition()
-    .attr('x', presSummaryWidth * (presWinningPercentage / 100))
-    .attr('width', presSummaryWidth * (100 - presWinningPercentage) / 100);
+    .attr('x', presSummaryWidth * computedMantleMultiplier)
+    .attr('width', presSummaryWidth * computedBrookMultiplier);
 
   presSummaryMidline
     .attr('x1', presSummaryWidth/2)
     .attr('x2', presSummaryWidth/2);
 
   presSummaryLabelOne
-    .text(presWinningPercentage + '%');
+    .text(constants.presMantlePercentage);
 
   presSummaryLabelTwo
     .attr('x', presSummaryWidth - 70)
-    .text(100 - presWinningPercentage + '%');
+    .text(constants.presBrookPercentage);
 };
 
 /**
@@ -193,7 +213,6 @@ var tabsInit = function tabsInit() {
 var sirenInit = function sirenInit() {
   $('.js-header-siren').click(function() {
     presSummaryUpdate();
-    presCopyUpdate();
     honiSummaryInit();
   })
 }
@@ -207,7 +226,6 @@ var init = function init() {
   tabsInit();
   sirenInit();
   presSummaryInit();
-  presCopyUpdate();
   honiSummaryInit();
 
   // Listener for the resize

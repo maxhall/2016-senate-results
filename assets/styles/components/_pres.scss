@@ -19,9 +19,10 @@
 }
 
 .pres__candidate-name {
-  font-size: 0.9rem;
+  font-size: $fontsize2;
   font-weight: bold;
-  text-transform: uppercase;
+  //text-transform: uppercase;
+  font-family: $font-family-sans-serif;
   margin: 5rem 0 0 0;
   padding: 0;
 }
@@ -55,23 +56,30 @@
 }
 
 .pres__summary-segment-label {
-  font-family: "Gotham";
+  font-family: $font-family-sans-serif;
   font-weight: bold;
   font-size: 25px;
 }
 
+.pres__breakdown-title {
+  @include section-title;
+}
+
 .pres__analysis {
   margin-top: $baseline;
-  @include outer-container();
+  //@include outer-container();
+  display: flex;
 }
 .pres__meta {
-  @include md-columns(6);
-  @include lg-columns(3);
+  //@include md-columns(6);
+  //@include lg-columns(3);
+  flex: 1 1 25%;
 }
 
 .pres__standfirst {
-  @include md-columns(6);
-  @include lg-columns(9);
+  //@include md-columns(6);
+  //@include lg-columns(9);
+  flex: 1 1 75%;
 }
 
 .pres__footnotes {

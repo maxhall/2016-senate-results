@@ -1,9 +1,14 @@
+html {
+  font-size: 15px;
+  line-height: $lineheight;
+}
+
 body {
   font-family: $font-family-serif;
 }
 
 p {
-  margin: 0 0 0 $baseline;
+  margin: 0;
   padding: 0;
 }
 
@@ -15,29 +20,44 @@ a {
  * Typography
  */
 @mixin small-text {
-  font-size: 12px;
-  line-height: 1.1;
+  font-size: $fontsize0;
+  line-height: $baseline;
   color: $brand-grey;
+  font-family: $font-family-serif;
 }
 
 @mixin section-title {
+  font-size: $fontsize3;
+  font-weight: 700;
+  line-height: $lineheight;
+  font-family: $font-family-sans-serif;
+  //text-transform: uppercase;
+  border-bottom: 1px solid $brand-grey;
+}
 
+@mixin apparatus-sans {
+  font-size: $fontsize0;
+  font-family: $font-family-sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 /*
  * Layout of components
  */
 .content {
-  @include outer-container();
-  //display: flex;
+  //@include outer-container();
+  display: flex;
 }
 
 .content__results {
-  @include md-columns(6);
-  //flex: 1;
+  //@include md-columns(6);
+  flex: 0 1 50%;
+  margin-right: $baseline;;
 }
 
 .content__updates {
-  @include md-columns(6);
-  //flex: 1;
+  //@include md-columns(6);
+  flex: 0 1 50%;
+  margin-left: $baseline;
 }

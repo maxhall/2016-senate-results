@@ -1,10 +1,13 @@
 .header {
   text-align: center;
+  margin-bottom: $baseline;
 }
 
 .header__title {
   display: inline;
-  font-size: 50px;
+  font-size: $fontsize4;
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
   margin: 0;
   padding: 0;
 }

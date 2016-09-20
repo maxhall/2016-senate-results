@@ -1,17 +1,25 @@
 .tabs {
   text-align: center;
   border-style: solid;
-  border-width: 2px 0;
+  border-width: 1px 0;
+  border-color: $brand-grey;
   margin: 0;
-  padding: 5px;
+  padding: 0;
+  display:flex;
+  flex-direction: horizontal;
 }
 
 .tabs__tab {
-  display: inline;
+  flex: 0 0 auto;
+  width: 50%;
+  height: 100%;
+  @include apparatus-sans;
+  list-style: none;
 }
 
 .tabs__tab--current {
   font-weight: bold;
+  background-color: $brand-grey-light;
 }
 
 .tabs__content {

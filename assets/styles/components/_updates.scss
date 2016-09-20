@@ -1,13 +1,14 @@
 .updates {
-  background-color: #eeffee;
+  border: 1px solid $brand-grey;
+  padding: $baseline;
 }
 
 .updates__title {
   margin: 0;
+  @include section-title;
 }
 
 .updates__entries-container {
-  border-top: 4px solid $brand-grey;
 }
 
 .updates__entries {
@@ -16,7 +17,7 @@
 }
 
 .updates__entry {
-  background-color: #ccddcc;
+  background-color: $brand-grey-light;
   padding: 5px 10px;
   margin: 10px 0;
 }
@@ -24,9 +25,14 @@
 .updates__heading {
   margin: 0;
   padding: 0;
+  font-family: $font-family-serif;
+  font-size: $fontsize2;
+}
+
+.updates__meta {
+  @include apparatus-sans;
 }
 
 .updates__time,
 .updates__author {
-
 }

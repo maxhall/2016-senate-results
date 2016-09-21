@@ -1,2 +1,14 @@
 node_modules
 .DS_store
+
+assets/javascripts/honiSummary.js
+
+dist/honiSummary.js
+
+dist/vendor/bootstrap.js
+
+dist/vendor/bootstrap.min.js
+
+dist/vendor/modernizr-2.8.3-respond-1.4.2.min.js
+
+dist/vendor/npm.js

@@ -15,25 +15,24 @@ var honiData = {};
 var tabletopInit = function tabletopInit() {
   Tabletop.init({
     key: sheetURL,
-    callback: logTabletopData,
+    callback: processData,
     simpleSheet: false,
   })
 };
 
-var logTabletopData = function logTabletopData(data, tabletop) {
-  rawData = data;
+var processData = function processData(data, tabletop) {
   constants = data.constants.elements['0'];
   updatesData = data.updates.elements;
   presData = data.pres.elements;
   honiData = data.honi.elements;
 
-  updateCopy();
+  update();
 };
 
 /**
  * Copy
  */
-var updateCopy = function updateCopy() {
+var copyUpdate = function copyUpdate() {
   // General
   d3.select('.js-header-title').text(constants.title);
   d3.select('.js-header-standfirst').html(constants.headerStandfirst);
@@ -52,14 +51,13 @@ var updateCopy = function updateCopy() {
 };
 
 /**
- * President
+ * President Summary
  */
 
 var presWinningPercentage = 48;
 var presSummaryHeight = 40;
-var presSummaryWidth = $('.js-content-results').width();
 // How far from the edge of the graphic should the bar label appear
-var presSummaryLabelPadding = 20;
+var presSummaryLabelPadding = 15;
 
 // Elements of the summary graphic
 var presSummary = d3.select('.js-pres-summary').append('svg');
@@ -72,7 +70,7 @@ var presSummaryLabelTwo = presSummary.append('text');
 
 // Initiate the pres summary
 var presSummaryInit = function presSummaryInit() {
-
+  var presSummaryWidth = $('.js-content-results').width();
   presSummary
     .attr('height', presSummaryHeight)
     .attr('width', presSummaryWidth);
@@ -115,8 +113,9 @@ var presSummaryInit = function presSummaryInit() {
     .text(constants.presBrookPercentage);
 };
 
-// Update the pres summary after resize or new data
+// Update the pres summary with data
 var presSummaryUpdate = function presSummaryUpdate() {
+  console.log('President summary update.');
   var presSummaryWidth = $('.js-content-results').width();
   var computedMantleMultiplier = parseInt(constants.presMantlePercentage)/100;
   var computedBrookMultiplier = 100 - computedMantleMultiplier;
@@ -146,7 +145,11 @@ var presSummaryUpdate = function presSummaryUpdate() {
 };
 
 /**
- * Honi
+ * President table
+ */
+
+/**
+ * Honi Summary
  */
 var honiSummaryNumberOfTickets = 3;
 var honiSummaryRowHeight = 30;
@@ -189,11 +192,46 @@ var honiSummaryInit = function honiSummaryInit(data) {
       return '#eeccee';
       //return d[i].colorhex;
     });
+};
 
+//var honiSummaryUpdate = honiSummaryUpdate() {
+  //console.log('Updated the honi summary');
+//};
+
+var honiSummaryUpdate = function honiSummaryUpdate() {
+  console.log('Honi Summary update.');
 }
+/**
+ * updates (the blog feature)
+ */
+var updatesUpdate = function updateUpdates() {
+  console.log('Updates update.');
+  var entries = d3.select('.js-updates-entries');
+
+  // Remove the existing content of the blog
+  entries.html('');
+
+  var entry = entries.selectAll('article')
+    .data(updatesData)
+    .enter()
+    .append('article')
+    .classed('updates__entry', true);
+
+  var entryHeading = entry.append('h5')
+    .classed('updates__heading', true)
+    .text(function(d, i) { return updatesData[i].heading; });
+
+  var entryMeta = entry.append('p')
+    .classed('updates__meta', true)
+    .text(function(d, i) { return updatesData[i].meta; });
+
+  var entryBody = entry.append('div')
+    .classed('updates__body', true)
+    .html(function(d, i) { return updatesData[i].body; });
+};
 
 /**
- * Set up the user interface
+ * Set up the tabs
  */
 var tabsInit = function tabsInit() {
   $('ul.tabs li').click(function(){
@@ -210,30 +248,35 @@ var tabsInit = function tabsInit() {
   })
 };
 
-var sirenInit = function sirenInit() {
-  $('.js-header-siren').click(function() {
-    presSummaryUpdate();
-    honiSummaryInit();
-  })
-}
+/**
+ * Set up some listeners
+ */
+
+// Update everything on the window resizing
+$(window).resize(function() {
+  update();
+});
 
 /**
  * Initialise everything
  */
-
 var init = function init() {
-  tabletopInit();
   tabsInit();
-  sirenInit();
   presSummaryInit();
   honiSummaryInit();
+  tabletopInit();
+};
 
-  // Listener for the resize
-  $(window).resize(function() {
-    presSummaryUpdate();
-  })
+/**
+ * Update all of the things
+ */
+var update = function update() {
+  presSummaryUpdate();
+  honiSummaryUpdate();
+  updatesUpdate();
+  copyUpdate();
 };
 
 $(document).ready(function(){
   init();
-})
+});

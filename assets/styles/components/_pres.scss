@@ -2,16 +2,23 @@
 }
 
 .pres__candidates {
-  @include outer-container()
-  display: block;
+  //@include outer-container()
+  display: flex;
+  flex-direction: row;
 }
 
 .pres__candidate {
-  @include sm-columns(6);
+  //@include sm-columns(6);
+  flex: 0 0 50%;
 }
 
 .pres__candidate-copy {
-  @include sm-columns(6);
+  //@include sm-columns(6);
+
+  @media (min-width:580px) {
+    width: 50%;
+    float: left;
+  }
 }
 
 .pres__candidate-copy--right {
@@ -19,11 +26,15 @@
 }
 
 .pres__candidate-name {
-  font-size: 0.9rem;
+
   font-weight: bold;
-  text-transform: uppercase;
-  margin: 5rem 0 0 0;
-  padding: 0;
+  //text-transform: uppercase;
+  font-size: $fontsize2;
+  font-family: $font-family-sans-serif;
+  @media (min-width:580px) { // weird breakpoint to stop floating pres pics
+    margin: 5rem 0 0 0;
+    padding: 0;
+  }
 }
 
 .pres__candidate-faction {
@@ -39,7 +50,9 @@
 
 .pres__photo-wrapper {
   height: auto;
-  @include sm-columns(6);
+  width: 50%;
+  float: left;
+  //@include sm-columns(6);
 }
 
 .pres__photo {
@@ -55,23 +68,30 @@
 }
 
 .pres__summary-segment-label {
-  font-family: "Gotham";
+  font-family: $font-family-sans-serif;
   font-weight: bold;
   font-size: 25px;
 }
 
+.pres__breakdown-title {
+  @include section-title;
+}
+
 .pres__analysis {
   margin-top: $baseline;
-  @include outer-container();
+  //@include outer-container();
+  display: flex;
 }
 .pres__meta {
-  @include md-columns(6);
-  @include lg-columns(3);
+  //@include md-columns(6);
+  //@include lg-columns(3);
+  flex: 1 1 25%;
 }
 
 .pres__standfirst {
-  @include md-columns(6);
-  @include lg-columns(9);
+  //@include md-columns(6);
+  //@include lg-columns(9);
+  flex: 1 1 75%;
 }
 
 .pres__footnotes {

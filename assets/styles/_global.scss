@@ -1,9 +1,14 @@
+html {
+  font-size: 15px;
+  line-height: $lineheight;
+}
+
 body {
   font-family: $font-family-serif;
 }
 
 p {
-  margin: 0 0 0 $baseline;
+  margin: 0;
   padding: 0;
 }
 
@@ -15,29 +20,55 @@ a {
  * Typography
  */
 @mixin small-text {
-  font-size: 12px;
-  line-height: 1.1;
-  color: $brand-grey;
+  font-size: $fontsize0;
+  line-height: $baseline;
+  color: $brand-grey-dark;
+  font-family: $font-family-sans-serif;
 }
 
 @mixin section-title {
+  font-size: $fontsize3;
+  font-weight: 700;
+  line-height: $lineheight;
+  font-family: $font-family-sans-serif;
+  //text-transform: uppercase;
+  border-bottom: 1px solid $brand-grey;
+}
 
+@mixin apparatus-sans {
+  font-size: $fontsize0;
+  font-family: $font-family-sans-serif;
+  //font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 150%;
 }
 
 /*
  * Layout of components
  */
 .content {
-  @include outer-container();
-  //display: flex;
+  //@include outer-container();
+
+  @media (min-width:$medium) {
+    display: flex;
+  }
 }
 
 .content__results {
-  @include md-columns(6);
-  //flex: 1;
+  //@include md-columns(6);
+
+  @media (min-width:$medium) {
+    flex: 0 1 50%;
+    margin-right: $baseline/2;
+  }
 }
 
 .content__updates {
-  @include md-columns(6);
-  //flex: 1;
+  //@include md-columns(6);
+  margin-top: $baseline;
+  @media (min-width:$medium) {
+    flex: 0 1 50%;
+    margin-left: $baseline/2;
+    margin-top: 0;
+  }
 }

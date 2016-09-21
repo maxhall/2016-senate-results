@@ -1,22 +1,32 @@
 .honi {
-  background-color: #eeeeff;
 }
 
 .honi__analysis {
   margin-top: $baseline;
-  @include outer-container();
+  //@include outer-container();
+  display: flex;
 }
 
 .honi__meta {
-  @include md-columns(6);
-  @include lg-columns(3);
+  flex: 1 1 25%;
+  //@include md-columns(6);
+  //@include lg-columns(3);
 }
 
 .honi__standfirst {
-  @include md-columns(6);
-  @include lg-columns(9);
+  flex: 1 1 75%;
+  //@include md-columns(6);
+  //@include lg-columns(9);
 }
 
 .honi__summary {
   margin-top: $baseline;
+}
+
+.honi__breakdown-title {
+  @include section-title;
+}
+
+.honi__footnotes {
+  @include small-text;
 }

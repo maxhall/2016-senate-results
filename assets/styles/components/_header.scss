@@ -17,17 +17,6 @@
   }
 }
 
-.header__title:before {
-  content: "🚨";
-  margin-right: $baseline;
-}
-
-.header__title:after {
-  content: "🚨";
-  margin-left: $baseline;
-}
-
-
 .header__siren {
   padding: 0 2rem;
   //display: inline;

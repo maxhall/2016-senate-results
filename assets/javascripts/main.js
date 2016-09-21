@@ -141,7 +141,7 @@ var presSummaryUpdate = function presSummaryUpdate() {
     .text(constants.presMantlePercentage);
 
   presSummaryLabelTwo
-    .attr('x', presSummaryWidth - 70)
+    .attr('x', presSummaryWidth - presSummaryLabelPadding)
     .text(constants.presBrookPercentage);
 };
 

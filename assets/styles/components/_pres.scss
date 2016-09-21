@@ -2,18 +2,15 @@
 }
 
 .pres__candidates {
-  //@include outer-container()
   display: flex;
   flex-direction: row;
 }
 
 .pres__candidate {
-  //@include sm-columns(6);
   flex: 0 0 50%;
 }
 
 .pres__candidate-copy {
-  //@include sm-columns(6);
 
   @media (min-width:580px) {
     width: 50%;
@@ -52,7 +49,6 @@
   height: auto;
   width: 50%;
   float: left;
-  //@include sm-columns(6);
 }
 
 .pres__photo {
@@ -79,18 +75,13 @@
 
 .pres__analysis {
   margin-top: $baseline;
-  //@include outer-container();
   display: flex;
 }
 .pres__meta {
-  //@include md-columns(6);
-  //@include lg-columns(3);
   flex: 1 1 25%;
 }
 
 .pres__standfirst {
-  //@include md-columns(6);
-  //@include lg-columns(9);
   flex: 1 1 75%;
 }
 

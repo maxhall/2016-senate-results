@@ -1,0 +1,142 @@
+// Straight up get pym.js working
+var pymChild = new pym.Child();
+
+data = [{"name":"Cam Hawkins","color":"#e4c6a0","count1":153,"count2":193,"count3":199,"count4":0,"count5":0,"count6":0,"count7":0,"count8":0,"position1":8,"position2":8,"position3":8,"position4":8,"position5":8,"position6":8,"position7":8,"position8":8},
+{"name":"Courtney Thompson","color":"#777777","count1":587,"count2":622,"count3":625,"count4":643,"count5":686,"count6":688.336,"count7":754.752,"count8":813.655,"position1":3,"position2":3,"position3":3,"position4":3,"position5":4,"position6":4,"position7":4,"position8":4},
+{"name":"Dom Bondar","color":"#252851","count1":93,"count2":98,"count3":0,"count4":0,"count5":0,"count6":0,"count7":0,"count8":0,"position1":9,"position2":9,"position3":9,"position4":9,"position5":9,"position6":9,"position7":9,"position8":9},
+{"name":"Esther Shim","color":"#ebebeb","count1":678,"count2":697,"count3":728,"count4":746,"count5":800,"count6":786,"count7":786,"count8":786,"position1":2,"position2":2,"position3":2,"position4":2,"position5":2,"position6":2,"position7":2,"position8":2},
+{"name":"Grace Franki","color":"#fe78ab","count1":382,"count2":494,"count3":501,"count4":582,"count5":631,"count6":636.12,"count7":723.272,"count8":798.022,"position1":7,"position2":6,"position3":6,"position4":4,"position5":5,"position6":5,"position7":5,"position8":5},
+{"name":"James Gibson","color":"#235b71","count1":484,"count2":546,"count3":556,"count4":571,"count5":622,"count6":625.104,"count7":0,"count8":0,"position1":4,"position2":4,"position3":4,"position4":6,"position5":6,"position6":6,"position7":6,"position8":6},
+{"name":"Koko Kong","color":"#93ddf9","count1":1451,"count2":786,"count3":786,"count4":786,"count5":786,"count6":786,"count7":786,"count8":786,"position1":1,"position2":1,"position3":1,"position4":1,"position5":1,"position6":1,"position7":1,"position8":1},
+{"name":"Sam Kwon","color":"#68339b","count1":427,"count2":485,"count3":493,"count4":511,"count5":0,"count6":0,"count7":0,"count8":0,"position1":6,"position2":7,"position3":7,"position4":7,"position5":7,"position6":7,"position7":7,"position8":7},
+{"name":"Vanessa Song","color":"#c60001","count1":456,"count2":513,"count3":523,"count4":543,"count5":695,"count6":698.168,"count7":919.84,"count8":786,"position1":5,"position2":5,"position3":5,"position4":5,"position5":3,"position6":3,"position7":3,"position8":3}];
+
+/*
+ * Variables for editing
+ */
+var highestValue = 650;
+var totalRounds = 8;
+
+/*
+ * Variables not for editing
+ */
+var round = 1;
+var playing = false;
+var chartWidth = $(window).width();
+var barHeight = 30;
+var barSpace = 5;
+var roundDelay = 1500;
+var transitionDelay = 200;
+var xScale = d3.scale.linear().domain([0, highestValue]).range([0, chartWidth]);
+
+/*
+ * the works
+ */
+function bars(number) {
+    // set up the string for which round it is
+    theCount = "count" + number;
+    thePosition = "position" + number;
+
+    // rectangle update
+    d3.selectAll("rect")
+        .transition()
+        .duration( 400 )
+        .attr("width", function(d, i) { return xScale(data[i][theCount]); });
+
+    // vote label update
+    d3.selectAll("#candidate-total")
+        .transition()
+        .duration( 400 )
+        .attr("x", function(d, i) {
+            if ( xScale(data[i][theCount]) < 165 ) {
+                return 165;
+            } else {
+                return xScale(data[i][theCount]) + 5;
+            };})
+        .text( function(d, i) { return data[i][theCount];} );
+
+    // group update
+    d3.selectAll("g")
+        .transition()
+        .delay(function(d, i) { return (i-1) * transitionDelay; })
+        .duration(function(d, i) { return i * transitionDelay; })
+        .attr("transform", function(d, i) { return "translate(0," + (data[i][thePosition] - 1) * (barHeight + barSpace) + ")"; });
+}
+
+function gotoround(number) {
+
+    if (number>0 && number<(totalRounds+1)) {
+        // set the round indicator
+        window.round = number;
+        // update the bar graph
+        bars(number);
+        // update the additional text
+        d3.select("#round-number").html(number);
+        // check if it's the AA round. If so, display the extra text.
+    } else {
+        return;
+    }
+}
+
+function init() {
+    // get the container size and set the width based off that - we're lazy so only do this once on page load.
+
+    // set up the Count Number and Number of Directors Elected
+    d3.select("#round-number").html(round);
+    d3.select("#directors-elected").html("elected directors");
+
+    // set up the controls and resize listener
+    d3.select("#back").on("click", function() { gotoround(round - 1); });
+    d3.select("#forward").on("click", function() { gotoround(round + 1); });
+
+    // create the svg and size it
+    var graphic = d3.select(".js-senate-results")
+      .append('svg')
+        .attr("width", chartWidth)
+        .attr("height", (barHeight + barSpace) * data.length);
+
+    var bar = graphic.selectAll("g")
+        .data(data)
+      .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(0," + (data[i]["position1"] - 1) * (barHeight + barSpace) + ")"; });
+
+    // set up the round 1 state of the rectangles
+    var rectangle = bar
+        .append("svg:rect")
+        .attr("width", function(d, i) { return xScale(data[i]["count1"]); })
+        .attr("height", barHeight)
+        .attr("fill", "#999");
+
+    var lineContainer = d3.select(".chart").append("svg:line")
+        .attr("x1", xScale(560))
+        .attr("y1", 0)
+        .attr("x2", xScale(560))
+        .attr("y2", 500)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+
+    var candidateName = bar
+        .append("text")
+        .attr("x", 5)
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35em")
+        .attr("id", "candidate-name")
+        .text( function(d, i) { return data[i].name; });
+
+    var voteLabel = bar
+        .append("text")
+        .attr("x", function(d, i) {
+            if ( xScale(data[i]["count1"]) < 165 ) {
+                return 165;
+            } else {
+                return xScale(data[i]["count1"]) + 5;
+            };})
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35em")
+        .attr("id", "candidate-total")
+        .text( function(d, i) { return data[i]["count1"]; });
+
+    gotoround(1)
+};
+
+init();

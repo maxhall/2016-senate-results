@@ -1,18 +1,14 @@
-// Import variables
-@import "variables";
+.results__wrapper {
+  padding: 0;
+  margin: 0;
+}
 
-// Import mixins
-@import "mixins/good-underlines";
+.header__title {
+  font-family: "Helvetica", Arial, sans-serif;
+  font-weight: bold;
+}
 
-// Import global styles
-@import "global";
-
-// Import components
-@import "components/header";
-@import "components/footer";
-@import "components/tabs";
-@import "components/meta";
-
-@import "components/pres";
-@import "components/honi";
-@import "components/updates";
+.candidate__name {
+  font-family: "Helvetica", Arial, sans-serif;
+  font-color: #fff;
+}

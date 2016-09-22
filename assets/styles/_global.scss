@@ -48,9 +48,11 @@ a {
  */
 .content {
   //@include outer-container();
+  box-sizing: border-box;
   max-width: 100%;
   @media (min-width:$medium) {
     display: flex;
+    margin: 0 -$baseline/2;
   }
 }
 
@@ -58,7 +60,7 @@ a {
   //@include md-columns(6);
   box-sizing: border-box;
   @media (min-width:$medium) {
-    flex: 0 0 50%;
+    flex: 0 1 50%;
     margin-right: $baseline/2;
   }
 }
@@ -68,7 +70,7 @@ a {
   margin-top: $baseline;
   box-sizing: border-box;
   @media (min-width:$medium) {
-    flex: 0 0 50%;
+    flex: 0 1 50%;
     margin-left: $baseline/2;
     margin-top: 0;
   }

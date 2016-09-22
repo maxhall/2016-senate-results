@@ -7,10 +7,13 @@ var pymChild = new pym.Child();
 var sheetURL = 'https://docs.google.com/spreadsheets/d/1YrPVj8O8ZrZaByz8wMhS56N8rL7e2hK-in_cyWlrq4I/pubhtml';
 
 var rawData = {};
-var constants = {};
+var constants = {presMantlePercentage: "50%", presBrookPercentage: "50%"};
 var updatesData = {};
 var presData = {};
-var honiData = {};
+var honiData = [{"name":"Time","primaryVote":500,"preferenceVote":-500,"finalVote":0,"colorPreferences":"#ffcc33","colorPrimary":"#ffcc33"},
+{"name":"Wet","primaryVote":600,"preferenceVote":400,"finalVote":1000,"colorPreferences":"#ffcc33","colorPrimary":"#99cccc"},
+{"name":"Sin","primaryVote":700,"preferenceVote":100,"finalVote":800,"colorPreferences":"#ffcc33","colorPrimary":"#cc99ff"},
+{"name":"Informal","primaryVote":50,"preferenceVote":0,"finalVote":50,"colorPreferences":"#ffcc33","colorPrimary":"#999"}];
 
 var tabletopInit = function tabletopInit() {
   Tabletop.init({
@@ -71,6 +74,7 @@ var presSummaryLabelTwo = presSummary.append('text');
 // Initiate the pres summary
 var presSummaryInit = function presSummaryInit() {
   var presSummaryWidth = $('.js-content-results').width();
+  var presMantleMultiplier = parseInt(constants.presMantlePercentage) / 100;
   presSummary
     .attr('height', presSummaryHeight)
     .attr('width', presSummaryWidth);
@@ -78,14 +82,14 @@ var presSummaryInit = function presSummaryInit() {
   presSummarySegmentOne
     .attr('x', 0)
     .attr('y', 0)
-    .attr('width', presSummaryWidth * 10)
+    .attr('width', presMantleMultiplier * presSummaryWidth)
     .attr('height', presSummaryHeight)
     .style('fill', '#008938');
 
   presSummarySegmentTwo
-    .attr('x', presSummaryWidth * 0.3)
+    .attr('x', presMantleMultiplier * presSummaryWidth)
     .attr('y', 0)
-    .attr('width', presSummaryWidth * 0.5)
+    .attr('width', (100 - presMantleMultiplier) * presSummaryWidth)
     .attr('height', presSummaryHeight)
     .style('fill', '#753da6');
 
@@ -147,18 +151,34 @@ var presSummaryUpdate = function presSummaryUpdate() {
 /**
  * President table
  */
+var presTableUpdate = function presTableUpdate() {
+  var table = d3.select('.js-pres-table').append('table');
+
+  var tableRows = table.selectAll('tr')
+    .data(presData).enter()
+    .append('tr');
+
+  var tableCells = tableRows.selectAll('td')
+    //.data()
+    //.enter()
+    .append('td')
+    .text(function(d) { return d; })
+
+};
 
 /**
  * Honi Summary
  */
-var honiSummaryNumberOfTickets = 3;
+var honiSummaryNumberOfTickets = 4;
 var honiSummaryRowHeight = 30;
-var honiSummaryRowSpace = 2;
-var honiSummaryHeight = 2 * honiSummaryRowHeight * honiSummaryNumberOfTickets + honiSummaryRowSpace * honiSummaryNumberOfTickets;
+var honiSummaryRowSpace = 4;
+var honiSummaryTopPad = 14;
+var honiSummaryHeight = (honiSummaryNumberOfTickets * honiSummaryRowHeight * 2) + ((honiSummaryNumberOfTickets - 1) * honiSummaryRowSpace) + honiSummaryTopPad;
 var honiSummaryWidth = $('.js-honi-summary').width();
 
 // Set up the summary elements
 var honiSummary = d3.select('.js-honi-summary').append('svg');
+var honiSummaryMidline = honiSummary.append('line');
 
 var honiSummaryInit = function honiSummaryInit(data) {
   var honiSummaryWidth = $('.js-content-results').width();
@@ -168,30 +188,48 @@ var honiSummaryInit = function honiSummaryInit(data) {
     .attr('width', honiSummaryWidth);
 
   honiSummaryTicket = honiSummary.selectAll('g')
-    .data([5, 6, 7])
+    .data(honiData)
     .enter().append('g')
     .attr('transform', function(d, i) {
-      return 'translate(0,' + (i) * honiSummaryRowHeight *2 + ')';
-    });
+      return 'translate(0,' + ( honiSummaryTopPad + (i) * honiSummaryRowHeight * 2) + ')';
+    })
 
-  honiSummaryLabel = honiSummaryTicket.append('text')
-    .text( function(d, i) {
-      return 'brand – finalPercentage';
-      // return d[i].brand + ' – ' + d[i].finalPercentage;
+  honiSummaryLabels = honiSummaryTicket
+    .append('text')
+    .text(function(d, i) {
+      return d.name + ' – ' + d.finalVote;
     })
     .classed('honi__ticket-label', true);
 
   honiSummaryPrimarySegment = honiSummaryTicket.append('rect')
     .attr('height', honiSummaryRowHeight)
     .attr('width', function(d,i) {
-      return 45;
-      //return d[i].primaryPercentage / 100 * honiSummaryWidth;
+      return parseInt(d.primaryPercentage) * honiSummaryWidth;
     })
-    .attr('transform', 'translate(0,' + (honiSummaryRowHeight + honiSummaryRowSpace) + ')')
+    //.attr('transform', 'translate(0,' + honiSummaryRowSpace + ')')
     .attr('fill', function(d,i) {
-      return '#eeccee';
-      //return d[i].colorhex;
+      return d.colorPrimary;
     });
+
+  honiSummaryPreferenceSegment = honiSummaryTicket.append('rect')
+    .attr('height', honiSummaryRowHeight)
+    .attr('width', function(d, i) {
+      return '100';
+    })
+    .attr('transform', function(d, i) {
+      return 'translate(100, 0)';
+    })
+    .attr('fill', function(d, i) {
+      return d.colorPreferences;
+    });
+
+  honiSummaryMidline
+    .attr('x1', honiSummaryWidth/2)
+    .attr('y1', 0)
+    .attr('x2', honiSummaryWidth/2)
+    .attr('y2', honiSummaryHeight)
+    .attr('stroke-width', 2)
+    .attr('stroke', 'black');
 };
 
 //var honiSummaryUpdate = honiSummaryUpdate() {
@@ -272,6 +310,7 @@ var init = function init() {
  */
 var update = function update() {
   presSummaryUpdate();
+  presTableUpdate();
   honiSummaryUpdate();
   updatesUpdate();
   copyUpdate();

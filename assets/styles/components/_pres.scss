@@ -10,16 +10,26 @@
   flex: 0 0 50%;
 }
 
-.pres__candidate-copy {
 
+.pres__candidate-copy {
+  width: 100%;
+  float: right;
+}
+
+.pres__candidate-copy--left {
+  text-align: left;
   @media (min-width:580px) {
     width: 50%;
-    float: left;
+    float: right;
   }
 }
 
 .pres__candidate-copy--right {
   text-align: right;
+  @media (min-width:580px) {
+    width: 50%;
+    float: left;
+  }
 }
 
 .pres__candidate-name {
@@ -49,6 +59,14 @@
   height: auto;
   width: 50%;
   float: left;
+}
+
+.pres__photo-wrapper--left {
+  float: left;
+}
+
+.pres__photo-wrapper--right {
+  float: right;
 }
 
 .pres__photo {

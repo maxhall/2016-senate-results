@@ -48,7 +48,7 @@ a {
  */
 .content {
   //@include outer-container();
-
+  max-width: 100%;
   @media (min-width:$medium) {
     display: flex;
   }
@@ -56,9 +56,9 @@ a {
 
 .content__results {
   //@include md-columns(6);
-
+  box-sizing: border-box;
   @media (min-width:$medium) {
-    flex: 0 1 50%;
+    flex: 0 0 50%;
     margin-right: $baseline/2;
   }
 }
@@ -66,8 +66,9 @@ a {
 .content__updates {
   //@include md-columns(6);
   margin-top: $baseline;
+  box-sizing: border-box;
   @media (min-width:$medium) {
-    flex: 0 1 50%;
+    flex: 0 0 50%;
     margin-left: $baseline/2;
     margin-top: 0;
   }
